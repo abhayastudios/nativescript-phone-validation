@@ -158,7 +158,7 @@ export class LoginPage implements OnInit {
 
     this.modal.showModal(CountryCodeModal,modalOptions).then((result) => {
       //console.dump(result);
-      if (result!==null && result.hasOwnProperty('iso2') && result.hasOwnProperty('dialCode')) {
+      if (result && result.hasOwnProperty('iso2') && result.hasOwnProperty('dialCode')) {
         this.countryCode = result['iso2'];
         this.countryDialCode = '+' + result['dialCode'];
         this.setFlagImage();

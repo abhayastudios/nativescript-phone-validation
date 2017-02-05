@@ -1,4 +1,4 @@
-# NativeScript Phone Validator
+# NativeScript Phone Validation
 
 This is a demo project for a phone number validation flow for NativeScript with ng2 (tested on 2.4). It assumes that the backend will use the international phonenumber (E164 format) as the username, but it can be completely customized.
 

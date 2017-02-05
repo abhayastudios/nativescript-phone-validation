@@ -1,6 +1,6 @@
 {
   "name": "nativescript-phone-validation",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Phone number validation flow demo project for NativeScript with ng2",
   "license": "MIT",
   "readme": "NativeScript Application",
@@ -21,7 +21,7 @@
       "version": "2.4.0"
     },
     "tns-android": {
-      "version": "2.4.1"
+      "version": "2.5.0"
     }
   },
   "dependencies": {

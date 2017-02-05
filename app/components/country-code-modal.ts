@@ -11,7 +11,7 @@ import {PhoneNumberProvider} from '../providers/phonenumber';
         <Label text="Select Country" col="1" class="center header-text"></Label>
         <Button text="&#xf00d;" col="2" class="fa header-text close-button" (tap)="params.closeCallback(null)"></Button>
       </GridLayout>
-      <SearchBar #searchBar hint="Search" (propertyChange)="searchCountryCode($event)" (loaded)="preventFocus()"></SearchBar>
+      <SearchBar #searchBar hint="Search" (propertyChange)="searchCountryCode($event)"></SearchBar>
       <ListView [items]="countriesFound" style="margin:10;" rowHeight="75">
         <template let-item="item">
           <!-- template wrapped in StackLayout for class list-item to take effect -->
@@ -44,6 +44,7 @@ export class CountryCodeModal implements OnInit {
   constructor(private params: ModalDialogParams, public phonenumber: PhoneNumberProvider) {}
 
   ngOnInit() {
+    this.preventFocus();
     this.countriesFound = this.phonenumber.countries;
   }
   
@@ -63,9 +64,11 @@ export class CountryCodeModal implements OnInit {
   */
   private preventFocus() {
     if (isAndroid) {
-      setTimeout(() => {
-        this.searchBar.nativeElement.android.clearFocus(); // clears focus and dismisses soft keyboard
-      },10);
+      if (this.searchBar.nativeElement.android) {
+        setTimeout(() => { this.searchBar.nativeElement.android.clearFocus(); },0); // clears focus and dismisses soft keyboard
+      } else {
+        setTimeout(() => { this.preventFocus(); },10); // sometimes nativeElement is not available yet
+      }
     }
   }
 }
